@@ -13,6 +13,8 @@ class ChatController {
   Ref _ref;
   ChatController(this._ref); //ref 사용하기 위함.
 
+  void findAllStream() {}
+
   void insert(ChatInsertReqDto dto) {
     Future<DocumentReference> futureDoc = _ref.read(chatFirestoreRepositoryProvider).insert(dto); // doc는 하나의 문서 docs는 여러개의 문서
     futureDoc.then((value) {

@@ -4,15 +4,20 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChatInsertReqDto {
+  String id;
   String from;
   String to;
   String msg;
 
-  ChatInsertReqDto({required this.from, required this.to, required this.msg});
+  ChatInsertReqDto({required this.id, required this.from, required this.to, required this.msg});
 
   //dart -> map (toJson)
+  // final doc = FirebaseFirestore.instance.collection('chat').doc();
   Map<String, dynamic> toJson() => {
+        "id": id,
         "from": from,
         "to": to,
         "msg": msg,
@@ -20,6 +25,7 @@ class ChatInsertReqDto {
 
   //map -> dart (fromJson)
   factory ChatInsertReqDto.fromJson(Map<String, dynamic> json) => ChatInsertReqDto(
+        id: json["id"],
         from: json["from"],
         to: json["to"],
         msg: json["msg"],
