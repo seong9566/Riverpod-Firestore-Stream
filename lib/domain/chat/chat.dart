@@ -4,5 +4,5 @@ class Chat {
   String to;
   String msg;
 
-  Chat(this.id, this.from, this.to, this.msg) {}
+  Chat(this.id, this.from, this.to, this.msg);
 }

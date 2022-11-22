@@ -1,13 +1,27 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
-class ChatRoomPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controller/chat_controller.dart';
+import 'package:flutter_application_1/dto/chat/chat_insert_req_dto.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class ChatRoomPage extends ConsumerWidget {
   const ChatRoomPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final chatController = ref.read(chatControllerProvider);
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Random random = Random();
+          ChatInsertReqDto dto = ChatInsertReqDto(from: "ssar", to: "cos", msg: "hello - ${random.nextInt(100)}");
+          chatController.insert(dto);
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 
